@@ -60,39 +60,39 @@ class ProgKalk : public Kalkulacka {
         int a_dec = 0;
         int b_dec = 0;
     
+        void bin_to_dec(string &bin_a,string &bin_b) {
+            a_dec = stoi(bin_a, nullptr, 2);
+            b_dec = stoi(bin_b, nullptr, 2);
+        }
+    
+        string dec_to_bin (int cislo) {
+            if (cislo == 0) return "0";
+    
+                bool jeZaporne = false;
+            if (cislo < 0) {
+                jeZaporne = true;
+                cislo = -cislo; // Zmeníme na kladné pre výpočet
+            }
+    
+            string bin_a ="";
+            while (cislo > 0) {
+                bin_a = to_string(cislo % 2) + bin_a;
+                cislo /= 2;
+               }
+    
+            if (jeZaporne) {
+                bin_a = "-" + bin_a;
+            }
+    
+            return bin_a;
+        }
+
+        void dec_to_bin(string &bin_a, string &bin_b) {
+            bin_a = dec_to_bin(a_dec);
+            bin_b = dec_to_bin(b_dec);
+        }
     public:
-    void bin_to_dec(string &bin_a,string &bin_b) {
-        a_dec = stoi(bin_a, nullptr, 2);
-        b_dec = stoi(bin_b, nullptr, 2);
-    }
 
-
-    string dec_to_bin (int cislo) {
-        if (cislo == 0) return "0";
-
-            bool jeZaporne = false;
-        if (cislo < 0) {
-            jeZaporne = true;
-            cislo = -cislo; // Zmeníme na kladné pre výpočet
-        }
-
-        string bin_a ="";
-        while (cislo > 0) {
-            bin_a = to_string(cislo % 2) + bin_a;
-            cislo /= 2;
-           }
-
-        if (jeZaporne) {
-            bin_a = "-" + bin_a;
-        }
-
-        return bin_a;
-    }
-
-    void dec_to_bin(string &bin_a, string &bin_b) {
-        bin_a = dec_to_bin(a_dec);
-        bin_b = dec_to_bin(b_dec);
-    }
 
     ///////toto som nahradil dvoma funkciami vyssie, lebo potrebujem vediet konvertovat aj iba jedno cislo a to vysledok./////////
     // void dec_to_bin(int a_dec, int b_dec,string &bin_a, string &bin_b) {
