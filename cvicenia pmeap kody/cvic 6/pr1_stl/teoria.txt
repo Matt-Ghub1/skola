@@ -1,0 +1,9 @@
+STL kontajnery sa delia do následovných kategórii:
+zvacsa kazdy ma svoj vlastny #include
+sekvenčné kontajnery: vector, array, list, forward_list, deque (máme prístup k prvkom na základe ich pozícií v sekvencií)
+sekvenčné adaptéry: stack, queue, priority_queue (nemožno iterovať)
+asociatívne kontajnery: map, multimap, set, multiset (využívajú binary search tree, vhodné ako data structs pre indexovanie)
+neusporiadané asociatívne kontajnery: unordered_map, unordered_multimap, unordered_set, unordered_multiset
+priklady najdete v zlozke pr1_stl
+viac najdete v dokumentacii: https://cppreference.com/cpp/container
+G++ 16.3 (ten co mate teraz) ma standard jazyku C++20 (avsak podporuje aj vyssie, len to treba specifikovat)
