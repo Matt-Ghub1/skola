@@ -185,7 +185,106 @@ int uloha4() {
     return 0;
 }
 
+
+
+int uloha5() {
+    class Riadok {
+        
+        public:
+        char *znaky;
+        int pocet;
+        char znak = ' ';
+
+        Riadok (int pocet) {
+            this->pocet = pocet;
+            znaky = new char[pocet];
+        }
+        ~Riadok () {
+            cout << "riadok zruseny" << endl;
+            delete[] znaky;
+    }
+        virtual void prepis() {
+            for (int i = 0; i<pocet; i++)
+                znaky[i] = znak;
+        }
+
+        void vypisRiadok() {
+            for (int i =0; i<pocet;i++){
+               cout << znaky[i];
+        }
+        cout << endl;
+    }
+
+    };  
+
+    class HviezdickovyRiadok : public Riadok {
+        public:
+        HviezdickovyRiadok(int pocet) : Riadok(pocet) {
+            for (int i = 0; i<pocet; i++)
+                znaky[i] = '*';
+        }
+        };
+
+    class MriezkovyRiadok : public Riadok {
+        public:
+        MriezkovyRiadok(int pocet) : Riadok(pocet){
+            for (int i = 0; i<pocet; i++)
+                znaky[i] = '#';
+        }
+        };
+
+        int pocetz = 0;
+
+    cout<<"Zadaj pocet znakov: "<<endl;
+    cin >> pocetz;
+    HviezdickovyRiadok H(pocetz);
+    MriezkovyRiadok M(pocetz);
+    H.vypisRiadok();
+    M.vypisRiadok();
+    return 0;
+}
+
+
+int uloha6() {
+    class Vozidlo {
+        public:
+         
+        virtual double rychlost() const = 0;
+
+        virtual ~Vozidlo() {}
+    };
+    
+    class Auto : public Vozidlo {
+        double rychlost() const override {return 120.0;}
+    };
+    
+
+    class Bycikel : public Vozidlo {
+        double rychlost() const override {return 25.0;}
+    };
+
+    int n;
+    int volba;
+    cout << "pocet (aut/byciklov):" << endl;
+    cin >> n;
+    Vozidlo **v = new Vozidlo*[n];
+    for (int i = 0; i < n; i++) {
+        cout << "Zvol auto(1) alebo bycikel(2):" << endl;
+        cin >> volba;
+        if (volba ==1) {v[i]=new Auto;}
+        else if (volba == 2) {v[i]= new Bycikel;}
+        cout << "rychlost je:" << v[i]->rychlost() << endl;
+        delete v[i];
+    }
+
+    delete[] v;
+
+    
+    return 0;
+}
+
+
 int main() {
-    uloha4();
+    uloha6();
 }
 
