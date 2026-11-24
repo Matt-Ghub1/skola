@@ -288,3 +288,63 @@ int main() {
     uloha6();
 }
 
+
+
+//1) NAZVY ZAPISUJ PRESNE - test vola tvoje metody podla mena. Aj velkost
+//     pismen, aj typ parametrov, aj public/protected/private. (Test moze
+//     napr. dedit z tvojej triedy, aby sa dostal na protected clenov.)
+//
+//  2) ABSTRAKTNA TRIEDA:   virtual void f(int) = 0;   + virtual ~Trieda() {}
+//     Potomok:             void f(int) override { ... }
+//
+//  3) KONSTRUKTOR POTOMKA nastavuje protected clenov predka v tele (alebo
+//     zavola konstruktor predka v inicializacnom zozname: Potomok(): Predok(1,2) {}).
+//
+//  4) PARAMETER TIENUJE CLENA (rovnake meno)  ->  this->x = x;
+//
+//  5) DYNAMICKE POLE:      T* p = new T[n];     uvolnenie:  delete[] p;
+//     Jedna premenna:      T* p = new T(...);               delete p;
+//     Vzdy nullptr, ked nic neallokujes. Vzdy destruktor. Vzdy delete[] k new[].
+//
+//  6) 2D POLE:  T** m = new T*[r];  for i: m[i] = new T[c];
+//     Uvolnenie: for i: delete[] m[i];  delete[] m;
+//
+//  7) PRAVIDLO TROCH: ak mas destruktor s delete -> napis aj kopirovaci
+//     konstruktor a operator= (hlboka kopia, viz Tileset vyssie).
+//
+//  8) CONST: metoda, ktora nemeni stav objektu:  int getX() const;
+//     Parametre, ktore len citas:  const std::string& s
+//     Navrat referencie na string: const std::string& getType() const;
+//
+//  9) "NEPLATNA HODNOTA" pri zlom indexe: zvycajne nullptr (pri pointeri),
+//     -1 / 0 (pri cisle), prazdny string, alebo vynimka:
+//        throw std::out_of_range("index");   // #include <stdexcept>
+//     Pozri zadanie, co presne chcu. Ak nie je jasne, nullptr pri pointeroch.
+//
+// 10) NAVRAT "AKO REFERENCIA/POINTER", ABY SA ZMENA PREJAVILA V OBJEKTE:
+//     vracaj T* alebo T&, nie T (T = kopia, zmeny sa stratia).
+//
+// 11) STATIC clen (spolocny pre vsetky objekty):
+//        class A { static int count; };      // v triede
+//        int A::count = 0;                   // MIMO triedy, raz, v .cpp
+//
+// 12) OPERATORY:  bool operator==(const A& o) const { return x == o.x; }
+//                 A operator+(const A& o) const { return A(x + o.x); }
+//                 friend std::ostream& operator<<(std::ostream& os, const A& a);
+//
+// 13) CELOCISELNE DELENIE: 7/2 == 3 (zahadza desatinnu cast), -7/2 == -3.
+//     Modulo: 7 % 2 == 1 (neparne).
+//
+// 14) POLE VS VECTOR: ak zadanie vyslovene hovori "dynamicke pole" / "new",
+//     pouzi new[]. Ak nie, std::vector<T> je bezpecnejsi (netreba delete).
+//
+// 15) GTEST (ako to vyzera na druhej strane, len pre pochopenie):
+//        #include <gtest/gtest.h>
+//        #include "c_aisid_priezvisko.cpp"   // tvoj subor sa vlozi
+//        TEST(GrassTest, Default) {
+//            Grass g;
+//            EXPECT_EQ(g.getY(), 1);
+//            EXPECT_EQ(g.getType(), "grass");
+//        }
+//        // main() dodava gtest_main - ten nie je tvoj.
+// ============================================================================
